@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@color/black_700" />
+
+    <item>
+        <bitmap
+            android:src="@drawable/background_movie_transparant"
+            android:gravity="center" />
+
+    </item>
+
+</layer-list>

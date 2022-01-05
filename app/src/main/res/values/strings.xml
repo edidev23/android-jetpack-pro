@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Movie Catalogue</string>
+
+    <string name="title">Spider-Man: No Way Home</string>
+    <string name="release">Tanggal release</string>
+    <string name="release_date">Release %s</string>
+    <string name="show">Tanggal Tayang</string>
+    <string name="show_date">Tayang %s</string>
+    <string name="overview">Overview</string>
+    <string name="text_overview">Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man.</string>
+    <string name="title_activity_detail_movie">Detail Movie</string>
+    <string name="title_activity_detail_tv">Detail TV Show</string>
+
+    <string name="movie">Movies</string>
+    <string name="tv">TV Show</string>
+    <string name="rating">Rating Score</string>
+    <string name="rating_score">90.0%</string>
+
+</resources>

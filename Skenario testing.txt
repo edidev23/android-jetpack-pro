@@ -1,0 +1,49 @@
+Unit Testing ViewModel
+1. MovieViewModelTest:
+    * Memuat Movies:
+    - Memastikan data movie tidak null.
+    - Memastikan jumlah data movie sesuai dengan yang diharapkan, yaitu 10 data.
+    - memastikan bahwa terjadi perubahan di observer LiveData
+
+2. TvViewModelTest:
+    * Memuat Tv Show:
+    - Memastikan data tv show tidak null.
+    - Memastikan jumlah data tv show sesuai dengan yang diharapkan, yaitu 10 data.
+    - memastikan bahwa terjadi perubahan di observer LiveData
+
+3. CatalogueRepositoryTest
+    * Memuat data Movie
+    - Memastikan data movie tidak null.
+    - Memastikan jumlah data movie sesuai dengan yang diharapkan, yaitu 10 data.
+
+    * Memuat data Tv Show
+    - Memastikan data tv show tidak null.
+    - Memastikan jumlah data tv show sesuai dengan yang diharapkan, yaitu 10 data.
+
+Instrumental Testing HomeActivityTest
+
+1. Menampilkan data Movies
+   - Memastikan rv_movie dalam keadaan tampil.
+   - Gulir rv_movie ke posisi data terakhir.
+
+2. Menampilkan data detail Movie
+   - Memberi tindakan klik pada data ke 0 di rv_movie.
+   - Memastikan ImageView untuk img poster tampil.
+   - Memastikan TextView untuk title tampil.
+   - Memastikan TextView untuk overview tampil.
+   - Memastikan TextView untuk tanggal release tampil.
+   - Memastikan TextView untuk userScore tampil.
+
+3. Menampilkan data Tv Show
+   - Klik TabLayout dengan teks TV SHOW
+   - Memastikan rv_tv dalam keadaan tampil.
+   - Gulir rv_tv ke posisi data terakhir.
+
+4. Menampilkan data detail Tv Show
+   - Klik TabLayout dengan teks TV SHOW
+   - Memberi tindakan klik pada data ke 0 di rv_tv.
+   - Memastikan ImageView untuk img poster tampil.
+   - Memastikan TextView untuk title tampil.
+   - Memastikan TextView untuk overview tampil.
+   - Memastikan TextView untuk tanggal tayang tampil.
+   - Memastikan TextView untuk userScore tampil.
