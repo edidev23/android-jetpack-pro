@@ -41,6 +41,8 @@ class MovieFragment : Fragment() {
                     setHasFixedSize(true)
                     adapter = movieAdapter
                 }
+
+
             })
 
 
