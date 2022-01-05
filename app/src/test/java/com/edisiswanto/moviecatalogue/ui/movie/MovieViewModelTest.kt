@@ -39,7 +39,7 @@ class MovieViewModelTest {
     @Test
     fun getMovieDiscover() {
         val movie = MutableLiveData<List<MovieEntity>>()
-        movie.value = dummyMovie as List<MovieEntity>
+        movie.value = dummyMovie
 
         Mockito.`when`(catalogRepository.getMovieDiscover()).thenReturn(movie)
 

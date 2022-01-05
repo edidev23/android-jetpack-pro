@@ -64,4 +64,48 @@ class FakeCatalogueRepository (private val remoteDataSource: RemoteDataSource) :
         return listTvResult
     }
 
+    override fun getMovieDetail(movieId: Int): LiveData<MovieEntity> {
+        val movieResult = MutableLiveData<MovieEntity>()
+        CoroutineScope(Dispatchers.IO).launch {
+            remoteDataSource.getMovieDetail(movieId, object : RemoteDataSource.LoadMovieDetailCallback{
+                override fun onMovieDetailReceived(movieResponse: MovieDiscover) {
+                    val movie = MovieEntity(
+                        movieResponse.id,
+                        movieResponse.title,
+                        movieResponse.overview,
+                        movieResponse.releaseDate,
+                        movieResponse.voteAverage,
+                        movieResponse.posterPath
+                    )
+
+                    movieResult.postValue(movie)
+                }
+            })
+        }
+
+        return movieResult
+    }
+
+    override fun getTvShowDetail(tvId: Int): LiveData<TvEntity> {
+        val movieResult = MutableLiveData<TvEntity>()
+        CoroutineScope(Dispatchers.IO).launch {
+            remoteDataSource.getTvShowDetail(tvId, object : RemoteDataSource.LoadTvShowDetailCallback{
+                override fun onTvShowDetailReceived(tvResponse: TvDiscover) {
+                    val movie = TvEntity(
+                        tvResponse.id,
+                        tvResponse.name,
+                        tvResponse.overview,
+                        tvResponse.firstAirDate,
+                        tvResponse.voteAverage,
+                        tvResponse.posterPath
+                    )
+
+                    movieResult.postValue(movie)
+                }
+            })
+        }
+
+        return movieResult
+    }
+
 }

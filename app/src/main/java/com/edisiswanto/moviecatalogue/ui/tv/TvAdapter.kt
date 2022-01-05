@@ -38,9 +38,9 @@ class TvAdapter: RecyclerView.Adapter<TvAdapter.TvViewHolder>() {
         fun bind(data: TvEntity) {
             with(binding) {
                 tvItemTitle.text = data.name
-                tvItemDate.text = itemView.resources.getString(R.string.show_date, data.first_air_date)
+                tvItemDate.text = itemView.resources.getString(R.string.show_date, data.firstAirDate)
 
-                Glide.with(itemView.context).load(MovieFragment.API_IMAGE_ENDPOINT + MovieFragment.ENDPOINT_POSTER_SIZE_W185 + data.imagePath).apply(
+                Glide.with(itemView.context).load(MovieFragment.API_IMAGE_ENDPOINT + MovieFragment.ENDPOINT_POSTER_SIZE_W185 + data.posterPath).apply(
                     RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error)
                         .transform(RoundedCorners(20))
                 ).into(imgPoster)

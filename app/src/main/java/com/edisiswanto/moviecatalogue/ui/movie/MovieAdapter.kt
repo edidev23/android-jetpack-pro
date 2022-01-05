@@ -44,10 +44,10 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
                 tvItemTitle.text = movie.title
                 tvItemDate.text = itemView.resources.getString(
                     R.string.release_date,
-                    movie.release_date
+                    movie.relesaseDate
                 )
 
-                Glide.with(itemView.context).load(API_IMAGE_ENDPOINT + ENDPOINT_POSTER_SIZE_W185 + movie.imagePath).apply(
+                Glide.with(itemView.context).load(API_IMAGE_ENDPOINT + ENDPOINT_POSTER_SIZE_W185 + movie.posterPath).apply(
                     RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error)
                         .transform(RoundedCorners(20))
                 ).into(imgPoster)

@@ -5,6 +5,7 @@ import com.edisiswanto.moviecatalogue.LiveDataTestUtil
 import com.edisiswanto.moviecatalogue.data.source.remote.RemoteDataSource
 import com.edisiswanto.moviecatalogue.utils.DataDummy
 import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.verify
 import junit.framework.Assert
 import junit.framework.Assert.assertEquals
@@ -21,8 +22,13 @@ class CatalogueRepositoryTest {
     private val remote = Mockito.mock(RemoteDataSource::class.java)
     private val catalogRepository = FakeCatalogueRepository(remote)
 
-    private val listMovieResponse = DataDummy.generateDummyMovies()
-    private val listTvResonse = DataDummy.generateDummyTv()
+    private val listMovieResponse = DataDummy.generateDummyMoviesResponse()
+    private val listTvResonse = DataDummy.generateDummyTvResponse()
+
+    private val movieId = listMovieResponse[0].id
+    private val tvShowId = listTvResonse[0].id
+    private val movieResponse = DataDummy.generateDummyMoviesResponse()[0]
+    private val tvShowResponse = DataDummy.generateDummyTvResponse()[0]
 
     @Test
     fun getMovies() {
@@ -46,6 +52,27 @@ class CatalogueRepositoryTest {
     }
 
     @Test
+    fun getMovieDetail() {
+        runBlocking {
+            com.nhaarman.mockitokotlin2.doAnswer { invocation ->
+                (invocation.arguments[1] as RemoteDataSource.LoadMovieDetailCallback).onMovieDetailReceived(
+                    movieResponse
+                )
+                null
+            }.`when`(remote).getMovieDetail(eq(movieId), any())
+        }
+
+        val data = LiveDataTestUtil.getValue(catalogRepository.getMovieDetail(movieId))
+
+        runBlocking {
+            verify(remote).getMovieDetail(eq(movieId), any())
+        }
+
+        Assert.assertNotNull(data)
+        assertEquals(movieResponse.id, data.id)
+    }
+
+    @Test
     fun getTvDiscover() {
         runBlocking {
             doAnswer { invocation ->
@@ -64,5 +91,26 @@ class CatalogueRepositoryTest {
 
         Assert.assertNotNull(data)
         assertEquals(listTvResonse.size.toLong(), data.size.toLong())
+    }
+
+    @Test
+    fun getTvShowDetail() {
+        runBlocking {
+            com.nhaarman.mockitokotlin2.doAnswer { invocation ->
+                (invocation.arguments[1] as RemoteDataSource.LoadTvShowDetailCallback).onTvShowDetailReceived(
+                    tvShowResponse
+                )
+                null
+            }.`when`(remote).getTvShowDetail(eq(tvShowId), any())
+        }
+
+        val data = LiveDataTestUtil.getValue(catalogRepository.getTvShowDetail(tvShowId))
+
+        runBlocking {
+            verify(remote).getTvShowDetail(eq(tvShowId), any())
+        }
+
+        Assert.assertNotNull(data)
+        assertEquals(tvShowResponse.id, data.id)
     }
 }

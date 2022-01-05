@@ -41,7 +41,7 @@ class DetailTvActivity : AppCompatActivity() {
             factory
         )[DetailTvViewModel::class.java]
 
-        viewModel.getTvShowDetail(detail.tvId).observe(this, Observer {
+        viewModel.getTvShowDetail(detail.id).observe(this, Observer {
 
             contentDetailTvBinding.progressBar.visibility = View.INVISIBLE
             detailTv(it)
@@ -53,11 +53,11 @@ class DetailTvActivity : AppCompatActivity() {
         contentDetailTvBinding.tvOverviewTv.text = detail.overview
         contentDetailTvBinding.tvItemDateTv.text = resources.getString(
             R.string.show_date,
-            detail.first_air_date
+            detail.firstAirDate
         )
-        contentDetailTvBinding.tvItemScoreTv.text = detail.userScore.toString()
+        contentDetailTvBinding.tvItemScoreTv.text = detail.voteAverage.toString()
 
-        Glide.with(this).load(MovieFragment.API_IMAGE_ENDPOINT + MovieFragment.ENDPOINT_POSTER_SIZE_W185 + detail.imagePath).apply(
+        Glide.with(this).load(MovieFragment.API_IMAGE_ENDPOINT + MovieFragment.ENDPOINT_POSTER_SIZE_W185 + detail.posterPath).apply(
             RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error)
                 .transform(RoundedCorners(50))
         ).into(contentDetailTvBinding.imgPosterTv)

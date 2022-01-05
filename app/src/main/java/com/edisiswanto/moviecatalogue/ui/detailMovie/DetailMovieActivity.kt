@@ -41,7 +41,7 @@ class DetailMovieActivity : AppCompatActivity() {
             factory
         )[DetailMovieViewModel::class.java]
 
-        viewModel.getMovieDetail(detail.movieId).observe(this, Observer {
+        viewModel.getMovieDetail(detail.id).observe(this, Observer {
 
             contentDetailMovieBinding.progressBar.visibility = View.INVISIBLE
             detailMovie(it)
@@ -54,11 +54,11 @@ class DetailMovieActivity : AppCompatActivity() {
         contentDetailMovieBinding.tvOverview.text = detail.overview
         contentDetailMovieBinding.tvItemDate.text = resources.getString(
             R.string.release_date,
-            detail.release_date
+            detail.relesaseDate
         )
-        contentDetailMovieBinding.tvItemScore.text = detail.userScore.toString()
+        contentDetailMovieBinding.tvItemScore.text = detail.voteAverage.toString()
 
-        Glide.with(this).load(MovieFragment.API_IMAGE_ENDPOINT + MovieFragment.ENDPOINT_POSTER_SIZE_W185 + detail.imagePath).apply(
+        Glide.with(this).load(MovieFragment.API_IMAGE_ENDPOINT + MovieFragment.ENDPOINT_POSTER_SIZE_W185 + detail.posterPath).apply(
             RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error)
                 .transform(RoundedCorners(50))
         ).into(contentDetailMovieBinding.imgPoster)
