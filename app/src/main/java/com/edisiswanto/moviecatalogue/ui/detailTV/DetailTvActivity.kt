@@ -2,6 +2,9 @@ package com.edisiswanto.moviecatalogue.ui.detailTV
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
@@ -11,6 +14,7 @@ import com.edisiswanto.moviecatalogue.data.TvEntity
 import com.edisiswanto.moviecatalogue.databinding.ActivityDetailTvBinding
 import com.edisiswanto.moviecatalogue.databinding.ContentDetailTvBinding
 import com.edisiswanto.moviecatalogue.ui.movie.MovieFragment
+import com.edisiswanto.moviecatalogue.viewmodel.ViewModelFactory
 
 class DetailTvActivity : AppCompatActivity() {
 
@@ -31,6 +35,20 @@ class DetailTvActivity : AppCompatActivity() {
 
         val detail = intent.getParcelableExtra<MovieEntity>(EXTRA_TV) as TvEntity
 
+        val factory = ViewModelFactory.getInstance()
+        val viewModel = ViewModelProvider(
+            this@DetailTvActivity,
+            factory
+        )[DetailTvViewModel::class.java]
+
+        viewModel.getTvShowDetail(detail.tvId).observe(this, Observer {
+
+            contentDetailTvBinding.progressBar.visibility = View.INVISIBLE
+            detailTv(it)
+        })
+    }
+
+    private fun detailTv(detail: TvEntity) {
         contentDetailTvBinding.tvTitleTv.text = detail.name
         contentDetailTvBinding.tvOverviewTv.text = detail.overview
         contentDetailTvBinding.tvItemDateTv.text = resources.getString(

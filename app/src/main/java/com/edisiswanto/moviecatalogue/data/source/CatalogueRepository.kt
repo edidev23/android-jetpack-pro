@@ -49,6 +49,28 @@ class CatalogueRepository private constructor(private val remoteDataSource: Remo
         return listMovieResult
     }
 
+    override fun getMovieDetail(movieId: Int): LiveData<MovieEntity> {
+        val movieResult = MutableLiveData<MovieEntity>()
+        CoroutineScope(Dispatchers.IO).launch {
+            remoteDataSource.getMovieDetail(movieId, object : RemoteDataSource.LoadMovieDetailCallback{
+                override fun onMovieDetailReceived(movieResponse: MovieDiscover) {
+                    val movie = MovieEntity(
+                        movieResponse.id,
+                        movieResponse.title,
+                        movieResponse.overview,
+                        movieResponse.releaseDate,
+                        movieResponse.voteAverage,
+                        movieResponse.posterPath
+                    )
+
+                    movieResult.postValue(movie)
+                }
+            })
+        }
+
+        return movieResult
+    }
+
     override fun getTvDiscover(): LiveData<List<TvEntity>> {
         val listTvResult = MutableLiveData<List<TvEntity>>()
         CoroutineScope(Dispatchers.IO).launch {
@@ -73,5 +95,27 @@ class CatalogueRepository private constructor(private val remoteDataSource: Remo
         }
 
         return listTvResult
+    }
+
+    override fun getTvShowDetail(tvShowId: Int): LiveData<TvEntity> {
+        val tvShowResult = MutableLiveData<TvEntity>()
+        CoroutineScope(Dispatchers.IO).launch {
+            remoteDataSource.getTvShowDetail(tvShowId, object : RemoteDataSource.LoadTvShowDetailCallback{
+                override fun onTvShowDetailReceived(tvShowResponse: TvDiscover) {
+                    val tvShow = TvEntity(
+                        tvShowResponse.id,
+                        tvShowResponse.name,
+                        tvShowResponse.overview,
+                        tvShowResponse.firstAirDate,
+                        tvShowResponse.voteAverage,
+                        tvShowResponse.posterPath
+                    )
+
+                    tvShowResult.postValue(tvShow)
+                }
+            })
+        }
+
+        return tvShowResult
     }
 }

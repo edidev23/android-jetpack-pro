@@ -1,15 +1,20 @@
 package com.edisiswanto.moviecatalogue.ui.detailMovie
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.edisiswanto.moviecatalogue.R
 import com.edisiswanto.moviecatalogue.data.MovieEntity
+import com.edisiswanto.moviecatalogue.data.source.remote.response.MovieDiscover
 import com.edisiswanto.moviecatalogue.databinding.ActivityDetailMovieBinding
 import com.edisiswanto.moviecatalogue.databinding.ContentDetailMovieBinding
 import com.edisiswanto.moviecatalogue.ui.movie.MovieFragment
+import com.edisiswanto.moviecatalogue.viewmodel.ViewModelFactory
 
 class DetailMovieActivity : AppCompatActivity() {
 
@@ -30,6 +35,21 @@ class DetailMovieActivity : AppCompatActivity() {
 
         val detail = intent.getParcelableExtra<MovieEntity>(EXTRA_MOVIE) as MovieEntity
 
+        val factory = ViewModelFactory.getInstance()
+        val viewModel = ViewModelProvider(
+            this@DetailMovieActivity,
+            factory
+        )[DetailMovieViewModel::class.java]
+
+        viewModel.getMovieDetail(detail.movieId).observe(this, Observer {
+
+            contentDetailMovieBinding.progressBar.visibility = View.INVISIBLE
+            detailMovie(it)
+        })
+
+    }
+
+    private fun detailMovie(detail: MovieEntity) {
         contentDetailMovieBinding.tvTitle.text = detail.title
         contentDetailMovieBinding.tvOverview.text = detail.overview
         contentDetailMovieBinding.tvItemDate.text = resources.getString(
@@ -42,7 +62,6 @@ class DetailMovieActivity : AppCompatActivity() {
             RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error)
                 .transform(RoundedCorners(50))
         ).into(contentDetailMovieBinding.imgPoster)
-
     }
 
     companion object {
