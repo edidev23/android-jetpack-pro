@@ -3,14 +3,12 @@ package com.edisiswanto.moviecatalogue.ui.detailMovie
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.edisiswanto.moviecatalogue.R
 import com.edisiswanto.moviecatalogue.data.MovieEntity
-import com.edisiswanto.moviecatalogue.data.source.remote.response.MovieDiscover
 import com.edisiswanto.moviecatalogue.databinding.ActivityDetailMovieBinding
 import com.edisiswanto.moviecatalogue.databinding.ContentDetailMovieBinding
 import com.edisiswanto.moviecatalogue.ui.movie.MovieFragment
@@ -41,7 +39,7 @@ class DetailMovieActivity : AppCompatActivity() {
             factory
         )[DetailMovieViewModel::class.java]
 
-        viewModel.getMovieDetail(detail.id).observe(this, Observer {
+        viewModel.getMovieDetail(detail.id).observe(this, {
 
             contentDetailMovieBinding.progressBar.visibility = View.INVISIBLE
             detailMovie(it)

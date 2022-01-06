@@ -39,7 +39,7 @@ class TvViewModelTest {
     @Test
     fun getMovieDiscover() {
         val tvShow = MutableLiveData<List<TvEntity>>()
-        tvShow.value = dummyTv as List<TvEntity>
+        tvShow.value = dummyTv
 
         Mockito.`when`(catalogRepository.getTvDiscover()).thenReturn(tvShow)
 

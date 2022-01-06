@@ -11,7 +11,29 @@ Unit Testing ViewModel
     - Memastikan jumlah data tv show sesuai dengan yang diharapkan, yaitu 10 data.
     - memastikan bahwa terjadi perubahan di observer LiveData
 
-3. CatalogueRepositoryTest
+3. DetailMovieViewModelTest:
+    * Memuat Detail Movies:
+    - Memastikan detail movie tidak null.
+    - Memastikan nilai id dari api sama dengan id dari data dummy
+    - Memastikan nilai title dari api sama dengan title dari data dummy
+    - Memastikan nilai overview dari api sama dengan overview dari data dummy
+    - Memastikan nilai release date dari api sama dengan release date dari data dummy
+    - Memastikan nilai vote average dari api sama dengan vote average dari data dummy
+    - Memastikan nilai poster path dari api sama dengan poster path dari data dummy
+    - memastikan bahwa terjadi perubahan di observer LiveData
+
+4. DetailTvViewModelTest:
+    * Memuat Detail TV show:
+    - Memastikan detail tv show tidak null.
+    - Memastikan nilai id dari api sama dengan id dari data dummy
+    - Memastikan nilai name dari api sama dengan name dari data dummy
+    - Memastikan nilai overview dari api sama dengan overview dari data dummy
+    - Memastikan nilai first air date dari api sama dengan first air date dari data dummy
+    - Memastikan nilai vote average dari api sama dengan vote average dari data dummy
+    - Memastikan nilai poster path dari api sama dengan poster path dari data dummy
+    - memastikan bahwa terjadi perubahan di observer LiveData
+
+5. CatalogueRepositoryTest
     * Memuat data Movie
     - Memastikan data movie tidak null.
     - Memastikan jumlah data movie sesuai dengan yang diharapkan, yaitu 10 data.

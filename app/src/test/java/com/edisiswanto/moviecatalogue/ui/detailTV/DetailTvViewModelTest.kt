@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.edisiswanto.moviecatalogue.data.TvEntity
 import com.edisiswanto.moviecatalogue.data.source.CatalogueRepository
-import com.edisiswanto.moviecatalogue.data.source.remote.response.TvDiscover
 import com.edisiswanto.moviecatalogue.utils.DataDummy
 import com.nhaarman.mockitokotlin2.verify
 import junit.framework.Assert

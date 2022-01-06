@@ -3,7 +3,6 @@ package com.edisiswanto.moviecatalogue.ui.detailTV
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -41,7 +40,7 @@ class DetailTvActivity : AppCompatActivity() {
             factory
         )[DetailTvViewModel::class.java]
 
-        viewModel.getTvShowDetail(detail.id).observe(this, Observer {
+        viewModel.getTvShowDetail(detail.id).observe(this, {
 
             contentDetailTvBinding.progressBar.visibility = View.INVISIBLE
             detailTv(it)
