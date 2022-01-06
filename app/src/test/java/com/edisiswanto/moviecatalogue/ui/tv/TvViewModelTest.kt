@@ -37,7 +37,7 @@ class TvViewModelTest {
     }
 
     @Test
-    fun getMovieDiscover() {
+    fun getTvDiscover() {
         val tvShow = MutableLiveData<List<TvEntity>>()
         tvShow.value = dummyTv
 

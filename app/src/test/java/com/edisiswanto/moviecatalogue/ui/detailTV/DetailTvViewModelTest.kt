@@ -52,6 +52,7 @@ class DetailTvViewModelTest {
         assertEquals(dummyTv.name, tvData.name)
         assertEquals(dummyTv.overview, tvData.overview)
         assertEquals(dummyTv.firstAirDate, tvData.firstAirDate)
+        assertEquals(dummyTv.voteAverage, tvData.voteAverage, 0.0)
         assertEquals(dummyTv.posterPath, tvData.posterPath)
 
         viewModel.getTvShowDetail(tvId).observeForever(observer)
