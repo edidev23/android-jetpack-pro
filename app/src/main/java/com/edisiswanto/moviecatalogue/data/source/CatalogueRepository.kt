@@ -13,16 +13,6 @@ import kotlinx.coroutines.launch
 
 class CatalogueRepository private constructor(private val remoteDataSource: RemoteDataSource) : CatalogueDataSource {
 
-    companion object {
-        @Volatile
-        private var instance: CatalogueRepository? = null
-
-        fun getInstance(remoteDataSource: RemoteDataSource): CatalogueRepository =
-            instance ?: synchronized(this) {
-                instance ?: CatalogueRepository(remoteDataSource)
-            }
-    }
-
     override fun getMovieDiscover(): LiveData<List<MovieEntity>> {
         val listMovieResult = MutableLiveData<List<MovieEntity>>()
         CoroutineScope(Dispatchers.IO).launch {
@@ -118,4 +108,15 @@ class CatalogueRepository private constructor(private val remoteDataSource: Remo
 
         return tvShowResult
     }
+
+    companion object {
+        @Volatile
+        private var instance: CatalogueRepository? = null
+
+        fun getInstance(remoteDataSource: RemoteDataSource): CatalogueRepository =
+            instance ?: synchronized(this) {
+                instance ?: CatalogueRepository(remoteDataSource)
+            }
+    }
+
 }

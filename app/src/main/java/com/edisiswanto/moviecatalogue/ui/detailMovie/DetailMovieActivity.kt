@@ -12,6 +12,8 @@ import com.edisiswanto.moviecatalogue.data.MovieEntity
 import com.edisiswanto.moviecatalogue.databinding.ActivityDetailMovieBinding
 import com.edisiswanto.moviecatalogue.databinding.ContentDetailMovieBinding
 import com.edisiswanto.moviecatalogue.ui.movie.MovieFragment
+import com.edisiswanto.moviecatalogue.utils.Helper
+import com.edisiswanto.moviecatalogue.utils.Helper.setImageWithGlide
 import com.edisiswanto.moviecatalogue.viewmodel.ViewModelFactory
 
 class DetailMovieActivity : AppCompatActivity() {
@@ -48,18 +50,21 @@ class DetailMovieActivity : AppCompatActivity() {
     }
 
     private fun detailMovie(detail: MovieEntity) {
-        contentDetailMovieBinding.tvTitle.text = detail.title
-        contentDetailMovieBinding.tvOverview.text = detail.overview
-        contentDetailMovieBinding.tvItemDate.text = resources.getString(
-            R.string.release_date,
-            detail.relesaseDate
-        )
-        contentDetailMovieBinding.tvItemScore.text = detail.voteAverage.toString()
+        contentDetailMovieBinding.apply {
+            tvTitle.text = detail.title
+            tvOverview.text = detail.overview
+            tvItemDate.text = resources.getString(
+                R.string.release_date,
+                detail.relesaseDate
+            )
+            tvItemScore.text = detail.voteAverage.toString()
 
-        Glide.with(this).load(MovieFragment.API_IMAGE_ENDPOINT + MovieFragment.ENDPOINT_POSTER_SIZE_W185 + detail.posterPath).apply(
-            RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error)
-                .transform(RoundedCorners(50))
-        ).into(contentDetailMovieBinding.imgPoster)
+            setImageWithGlide(
+                this@DetailMovieActivity,
+                MovieFragment.API_IMAGE_ENDPOINT + MovieFragment.ENDPOINT_POSTER_SIZE_W185 + detail.posterPath,
+                imgPoster
+            )
+        }
     }
 
     companion object {

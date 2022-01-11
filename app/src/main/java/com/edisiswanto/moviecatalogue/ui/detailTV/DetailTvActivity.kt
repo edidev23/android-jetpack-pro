@@ -13,6 +13,8 @@ import com.edisiswanto.moviecatalogue.data.TvEntity
 import com.edisiswanto.moviecatalogue.databinding.ActivityDetailTvBinding
 import com.edisiswanto.moviecatalogue.databinding.ContentDetailTvBinding
 import com.edisiswanto.moviecatalogue.ui.movie.MovieFragment
+import com.edisiswanto.moviecatalogue.utils.Helper
+import com.edisiswanto.moviecatalogue.utils.Helper.setImageWithGlide
 import com.edisiswanto.moviecatalogue.viewmodel.ViewModelFactory
 
 class DetailTvActivity : AppCompatActivity() {
@@ -48,18 +50,21 @@ class DetailTvActivity : AppCompatActivity() {
     }
 
     private fun detailTv(detail: TvEntity) {
-        contentDetailTvBinding.tvTitleTv.text = detail.name
-        contentDetailTvBinding.tvOverviewTv.text = detail.overview
-        contentDetailTvBinding.tvItemDateTv.text = resources.getString(
-            R.string.show_date,
-            detail.firstAirDate
-        )
-        contentDetailTvBinding.tvItemScoreTv.text = detail.voteAverage.toString()
+        contentDetailTvBinding.apply {
+            tvTitleTv.text = detail.name
+            tvOverviewTv.text = detail.overview
+            tvItemDateTv.text = resources.getString(
+                R.string.show_date,
+                detail.firstAirDate
+            )
+            tvItemScoreTv.text = detail.voteAverage.toString()
 
-        Glide.with(this).load(MovieFragment.API_IMAGE_ENDPOINT + MovieFragment.ENDPOINT_POSTER_SIZE_W185 + detail.posterPath).apply(
-            RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error)
-                .transform(RoundedCorners(50))
-        ).into(contentDetailTvBinding.imgPosterTv)
+            setImageWithGlide(
+                this@DetailTvActivity,
+                MovieFragment.API_IMAGE_ENDPOINT + MovieFragment.ENDPOINT_POSTER_SIZE_W185 + detail.posterPath,
+                imgPosterTv
+            )
+        }
     }
 
     companion object {

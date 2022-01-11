@@ -8,7 +8,12 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiConfig {
 
-    private val loggingInterceptor =  HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+    val loggingInterceptor = if (BuildConfig.DEBUG) {
+        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+    } else {
+        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
+    }
+
     private val httpClient = OkHttpClient.Builder().addInterceptor(loggingInterceptor).apply {}.build()
 
     private val retrofit: Retrofit.Builder by lazy {

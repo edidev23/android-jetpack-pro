@@ -12,6 +12,8 @@ import com.edisiswanto.moviecatalogue.data.TvEntity
 import com.edisiswanto.moviecatalogue.databinding.ItemsTvBinding
 import com.edisiswanto.moviecatalogue.ui.detailTV.DetailTvActivity
 import com.edisiswanto.moviecatalogue.ui.movie.MovieFragment
+import com.edisiswanto.moviecatalogue.utils.Helper
+import com.edisiswanto.moviecatalogue.utils.Helper.setImageWithGlide
 
 class TvAdapter: RecyclerView.Adapter<TvAdapter.TvViewHolder>() {
     private val listTv = ArrayList<TvEntity>()
@@ -40,10 +42,11 @@ class TvAdapter: RecyclerView.Adapter<TvAdapter.TvViewHolder>() {
                 tvItemTitle.text = data.name
                 tvItemDate.text = itemView.resources.getString(R.string.show_date, data.firstAirDate)
 
-                Glide.with(itemView.context).load(MovieFragment.API_IMAGE_ENDPOINT + MovieFragment.ENDPOINT_POSTER_SIZE_W185 + data.posterPath).apply(
-                    RequestOptions.placeholderOf(R.drawable.ic_loading).error(R.drawable.ic_error)
-                        .transform(RoundedCorners(20))
-                ).into(imgPoster)
+                setImageWithGlide(
+                    itemView.context,
+                    MovieFragment.API_IMAGE_ENDPOINT + MovieFragment.ENDPOINT_POSTER_SIZE_W185 + data.posterPath,
+                    imgPoster
+                )
 
                 itemView.setOnClickListener {
                     val intent = Intent(itemView.context, DetailTvActivity::class.java)

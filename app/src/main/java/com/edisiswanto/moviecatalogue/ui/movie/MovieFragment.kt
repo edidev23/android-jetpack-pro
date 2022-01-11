@@ -11,15 +11,16 @@ import com.edisiswanto.moviecatalogue.databinding.FragmentMovieBinding
 import com.edisiswanto.moviecatalogue.viewmodel.ViewModelFactory
 
 class MovieFragment : Fragment() {
-    private lateinit var fragmentMovieBinding: FragmentMovieBinding
+    private var _binding: FragmentMovieBinding? = null
+    private val binding get() = _binding!!
     private lateinit var viewModel: MovieViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        fragmentMovieBinding = FragmentMovieBinding.inflate(layoutInflater, container, false)
-        return fragmentMovieBinding.root
+    ): View? {
+        _binding = FragmentMovieBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,20 +34,21 @@ class MovieFragment : Fragment() {
 
             viewModel.getMovies().observe(viewLifecycleOwner, { movies ->
 
-                fragmentMovieBinding.progressBar.visibility = View.INVISIBLE
+                binding.progressBar.visibility = View.INVISIBLE
                 val movieAdapter = MovieAdapter()
                 movieAdapter.setCourses(movies)
-                with(fragmentMovieBinding.rvMovie) {
+                with(binding.rvMovie) {
                     layoutManager = LinearLayoutManager(context)
                     setHasFixedSize(true)
                     adapter = movieAdapter
                 }
-
-
             })
-
-
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {
