@@ -72,4 +72,6 @@ class MovieAdapter : PagedListAdapter<MovieEntity, MovieAdapter.MovieViewHolder>
         }
     }
 
+    fun getSwipedData(swipedPosition: Int): MovieEntity? = getItem(swipedPosition)
+
 }

@@ -6,16 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.edisiswanto.moviecatalogue.R
 import com.edisiswanto.moviecatalogue.databinding.FragmentMovieFavoriteBinding
 import com.edisiswanto.moviecatalogue.ui.movie.MovieAdapter
 import com.edisiswanto.moviecatalogue.viewmodel.ViewModelFactory
+import com.google.android.material.snackbar.Snackbar
 
 class MovieFavoriteFragment : Fragment() {
 
     private var _binding: FragmentMovieFavoriteBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: MovieFavoriteViewModel
+    private lateinit var movieAdapter: MovieAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +40,9 @@ class MovieFavoriteFragment : Fragment() {
                 factory
             )[MovieFavoriteViewModel::class.java]
 
-            val movieAdapter = MovieAdapter()
+            movieAdapter = MovieAdapter()
+
+            itemTouchHelper.attachToRecyclerView(binding?.rvMovie)
 
             viewModel.getMoviesBookmark().observe(viewLifecycleOwner, { movies ->
 
@@ -51,6 +58,27 @@ class MovieFavoriteFragment : Fragment() {
 
         }
     }
+
+    private val itemTouchHelper = ItemTouchHelper(object : ItemTouchHelper.Callback() {
+        override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int =
+            makeMovementFlags(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT)
+
+        override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean = true
+
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            if (view != null) {
+                val swipedPosition = viewHolder.adapterPosition
+                val courseEntity = movieAdapter.getSwipedData(swipedPosition)
+                courseEntity?.let { viewModel.setBookmark(it) }
+
+                val snackbar = Snackbar.make(view as View, R.string.message_undo, Snackbar.LENGTH_LONG)
+                snackbar.setAction(R.string.message_ok) { v ->
+                    courseEntity?.let { viewModel.setBookmark(it) }
+                }
+                snackbar.show()
+            }
+        }
+    })
 
     override fun onDestroyView() {
         super.onDestroyView()

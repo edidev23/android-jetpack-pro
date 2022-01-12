@@ -10,4 +10,11 @@ class MovieFavoriteViewModel constructor(private val catalogueRepository: Catalo
     ViewModel() {
 
     fun getMoviesBookmark(): LiveData<PagedList<MovieEntity>> = catalogueRepository.getBookmarkedMovie()
+
+    fun setBookmark(movie: MovieEntity) {
+        if (movie != null) {
+            val newState = !movie.bookmarked
+            catalogueRepository.setMovieBookmark(movie, newState)
+        }
+    }
 }
