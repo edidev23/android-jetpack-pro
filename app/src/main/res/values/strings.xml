@@ -15,5 +15,6 @@
     <string name="tv">TV Show</string>
     <string name="rating">Rating Score</string>
     <string name="rating_score">90.0%</string>
+    <string name="menu_bookmark">Favorite</string>
 
 </resources>

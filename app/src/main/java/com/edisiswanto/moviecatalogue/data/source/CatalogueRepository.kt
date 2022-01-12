@@ -100,6 +100,30 @@ class CatalogueRepository @Inject private constructor(
     override fun getTvShowDetail(tvShowId: Int): LiveData<TvEntity> =
         localDataSource.getDetailTvShow(tvShowId)
 
+    override fun getBookmarkedMovie(): LiveData<PagedList<MovieEntity>> {
+        val config = PagedList.Config.Builder()
+            .setEnablePlaceholders(false)
+            .setInitialLoadSizeHint(4)
+            .setPageSize(4)
+            .build()
+        return LivePagedListBuilder(localDataSource.getBookmarkedMovies(), config).build()
+    }
+
+    override fun setMovieBookmark(movie: MovieEntity, state: Boolean) =
+        appExecutors.diskIO().execute { localDataSource.setMovieBookmark(movie, state) }
+
+    override fun getBookmarkedTv(): LiveData<PagedList<TvEntity>> {
+        val config = PagedList.Config.Builder()
+            .setEnablePlaceholders(false)
+            .setInitialLoadSizeHint(4)
+            .setPageSize(4)
+            .build()
+        return LivePagedListBuilder(localDataSource.getBookmarkedTv(), config).build()
+    }
+
+    override fun setTvBookmark(tvShow: TvEntity, state: Boolean)  =
+        appExecutors.diskIO().execute { localDataSource.setTvBookmark(tvShow, state) }
+
     companion object {
         @Volatile
         private var instance: CatalogueRepository? = null

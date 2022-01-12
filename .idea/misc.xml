@@ -10,6 +10,8 @@
         <entry key="app/src/main/res/drawable/bg_score.xml" value="0.21770833333333334" />
         <entry key="app/src/main/res/drawable/ic_baseline_movie_creation_24.xml" value="0.21197916666666666" />
         <entry key="app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.21770833333333334" />
+        <entry key="app/src/main/res/drawable/ic_bookmark_bordered.xml" value="0.21770833333333334" />
+        <entry key="app/src/main/res/drawable/ic_bookmark_white.xml" value="0.21770833333333334" />
         <entry key="app/src/main/res/drawable/ic_error.xml" value="0.21770833333333334" />
         <entry key="app/src/main/res/drawable/ic_loading.xml" value="0.21770833333333334" />
         <entry key="app/src/main/res/drawable/splash_brand_logo.xml" value="0.20260416666666667" />
@@ -23,6 +25,7 @@
         <entry key="app/src/main/res/layout/fragment_tv.xml" value="0.1752786220871327" />
         <entry key="app/src/main/res/layout/items_movie.xml" value="0.25" />
         <entry key="app/src/main/res/layout/items_tv.xml" value="0.10416666666666667" />
+        <entry key="app/src/main/res/menu/menu_detail.xml" value="0.2015625" />
       </map>
     </option>
   </component>

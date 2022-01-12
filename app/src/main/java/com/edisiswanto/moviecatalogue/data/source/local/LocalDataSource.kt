@@ -19,11 +19,21 @@ class LocalDataSource private constructor(private val mMoviesDao: MoviesDao) {
 
     fun getBookmarkedMovies(): DataSource.Factory<Int, MovieEntity> = mMoviesDao.getBookmarkedMovies()
 
+    fun setMovieBookmark(movie: MovieEntity, newState: Boolean) {
+        movie.bookmarked = newState
+        mMoviesDao.updateMovie(movie)
+    }
+
     fun insertMovies(movies: List<MovieEntity>) = mMoviesDao.insertMovies(movies)
 
     fun getAllTvShow(): DataSource.Factory<Int, TvEntity> = mMoviesDao.getTv()
 
     fun getBookmarkedTv(): DataSource.Factory<Int, TvEntity> = mMoviesDao.getBookmarkedTv()
+
+    fun setTvBookmark(tvShow: TvEntity, newState: Boolean) {
+        tvShow.bookmarked = newState
+        mMoviesDao.updateTv(tvShow)
+    }
 
     fun insertTv(tvShow: List<TvEntity>) = mMoviesDao.insertTv(tvShow)
 
