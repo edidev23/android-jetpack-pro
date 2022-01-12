@@ -27,8 +27,4 @@ class DetailMovieViewModel(private val catalogRepository: CatalogueRepository) :
                 catalogRepository.setMovieBookmark(movieDetail, newState)
         }
     }
-
-    var listBookmark: LiveData<PagedList<MovieEntity>> = Transformations.switchMap(movieId) { movieId ->
-        catalogRepository.getBookmarkedMovie()
-    }
 }

@@ -17,12 +17,15 @@
         <entry key="app/src/main/res/drawable/splash_brand_logo.xml" value="0.20260416666666667" />
         <entry key="app/src/main/res/layout/activity_detail_movie.xml" value="0.10416666666666667" />
         <entry key="app/src/main/res/layout/activity_detail_tv.xml" value="0.17844202898550723" />
+        <entry key="app/src/main/res/layout/activity_favorite.xml" value="0.1734375" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.10416666666666667" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.13994565217391305" />
         <entry key="app/src/main/res/layout/content_detail_movie.xml" value="0.125" />
         <entry key="app/src/main/res/layout/content_detail_tv.xml" value="0.17844202898550723" />
         <entry key="app/src/main/res/layout/fragment_movie.xml" value="0.10416666666666667" />
+        <entry key="app/src/main/res/layout/fragment_movie_favorite.xml" value="0.18070652173913043" />
         <entry key="app/src/main/res/layout/fragment_tv.xml" value="0.1752786220871327" />
+        <entry key="app/src/main/res/layout/fragment_tv_favorite.xml" value="0.18070652173913043" />
         <entry key="app/src/main/res/layout/items_movie.xml" value="0.25" />
         <entry key="app/src/main/res/layout/items_tv.xml" value="0.10416666666666667" />
         <entry key="app/src/main/res/menu/menu_detail.xml" value="0.2015625" />

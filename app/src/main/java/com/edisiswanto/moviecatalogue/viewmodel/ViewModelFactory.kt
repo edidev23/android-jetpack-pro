@@ -7,6 +7,8 @@ import com.edisiswanto.moviecatalogue.data.source.CatalogueRepository
 import com.edisiswanto.moviecatalogue.di.Injection
 import com.edisiswanto.moviecatalogue.ui.detailMovie.DetailMovieViewModel
 import com.edisiswanto.moviecatalogue.ui.detailTV.DetailTvViewModel
+import com.edisiswanto.moviecatalogue.ui.favorite.movie.MovieFavoriteViewModel
+import com.edisiswanto.moviecatalogue.ui.favorite.tv.TvFavoriteViewModel
 import com.edisiswanto.moviecatalogue.ui.movie.MovieViewModel
 import com.edisiswanto.moviecatalogue.ui.tv.TvViewModel
 
@@ -38,6 +40,12 @@ class ViewModelFactory private constructor(private val mCatalogRepository: Catal
             }
             modelClass.isAssignableFrom(DetailTvViewModel::class.java) -> {
                 DetailTvViewModel(mCatalogRepository) as T
+            }
+            modelClass.isAssignableFrom(MovieFavoriteViewModel::class.java) -> {
+                MovieFavoriteViewModel(mCatalogRepository) as T
+            }
+            modelClass.isAssignableFrom(TvFavoriteViewModel::class.java) -> {
+                TvFavoriteViewModel(mCatalogRepository) as T
             }
             else -> throw Throwable("Unknown ViewModel class: " + modelClass.name)
         }

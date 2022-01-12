@@ -16,5 +16,8 @@
     <string name="rating">Rating Score</string>
     <string name="rating_score">90.0%</string>
     <string name="menu_bookmark">Favorite</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="page_favorite">Favorite</string>
 
 </resources>

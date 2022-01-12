@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieCatalogue">
         <activity
+            android:name=".ui.favorite.FavoriteActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.detailMovie.DetailMovieActivity"
             android:exported="true"
             android:label="@string/title_activity_detail_movie"
@@ -37,7 +40,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
             </intent-filter>
         </activity>
         <activity

@@ -1,23 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.home.HomeActivity"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.home.HomeActivity">
+    android:layout_height="match_parent">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabs"
+    <LinearLayout
+        android:id="@+id/full_view"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black_700"
+            app:tabIndicatorColor="@android:color/white"
+            app:tabTextColor="@android:color/white" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_black_gradient" />
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_favorite"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/black_700"
-        app:tabTextColor="@android:color/white"
-        app:tabIndicatorColor="@android:color/white"/>
+        android:layout_margin="16dp"
+        android:foregroundGravity="bottom"
+        app:backgroundTint="@color/yellow_200"
+        app:fabSize="normal"
+        app:layout_anchor="@id/full_view"
+        app:layout_anchorGravity="bottom|end"
+        app:srcCompat="@drawable/ic_favorite"
+        app:tint="@color/black_700"
+        tools:ignore="ContentDescription" />
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
-        android:background="@drawable/bg_black_gradient"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
