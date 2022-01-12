@@ -1,5 +1,6 @@
 package com.edisiswanto.moviecatalogue.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.edisiswanto.moviecatalogue.data.source.CatalogueRepository
@@ -15,9 +16,11 @@ class ViewModelFactory private constructor(private val mCatalogRepository: Catal
         @Volatile
         private var instance: ViewModelFactory? = null
 
-        fun getInstance(): ViewModelFactory =
+        fun getInstance(context: Context): ViewModelFactory =
             instance ?: synchronized(this) {
-                instance ?: ViewModelFactory(Injection.provideCatalogRepository())
+                instance ?: ViewModelFactory(Injection.provideRepository(context)).apply {
+                    instance = this
+                }
             }
     }
 

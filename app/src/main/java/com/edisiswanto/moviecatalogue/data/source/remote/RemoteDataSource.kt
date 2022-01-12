@@ -1,9 +1,16 @@
 package com.edisiswanto.moviecatalogue.data.source.remote
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.edisiswanto.moviecatalogue.data.source.remote.api.ApiConfig
 import com.edisiswanto.moviecatalogue.data.source.remote.response.MovieDiscover
 import com.edisiswanto.moviecatalogue.data.source.remote.response.TvDiscover
+import com.edisiswanto.moviecatalogue.data.source.remote.vo.ApiResponse
 import com.edisiswanto.moviecatalogue.utils.EspressoIdlingResource
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import okio.IOException
 import retrofit2.await
 
 class RemoteDataSource {
@@ -17,63 +24,49 @@ class RemoteDataSource {
             }
     }
 
-    suspend fun getMovieDiscover(
-        callback: LoadMoviesCallback
-    ) {
+    fun getMovies(): LiveData<ApiResponse<List<MovieDiscover>>> {
         EspressoIdlingResource.increment()
-        ApiConfig.instance.getMovieDiscover().await().results.let { listMovie ->
-            callback.onAllMoviesReceived(
-                listMovie
-            )
-            EspressoIdlingResource.decrement()
+        val resultMovieResponse = MutableLiveData<ApiResponse<List<MovieDiscover>>>()
+        val client = ApiConfig.getApiService()
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = client.getMovieDiscover().await()
+                resultMovieResponse.postValue(ApiResponse.success(response.results!!))
+            } catch (e: IOException) {
+                e.printStackTrace()
+                resultMovieResponse.postValue(
+                    ApiResponse.error(
+                        e.message.toString(),
+                        mutableListOf()
+                    )
+                )
+            }
         }
+        EspressoIdlingResource.decrement()
+        return resultMovieResponse
     }
 
-    suspend fun getMovieDetail(movieId: Int, callback: LoadMovieDetailCallback) {
+    fun getTvShow(): LiveData<ApiResponse<List<TvDiscover>>> {
         EspressoIdlingResource.increment()
-        ApiConfig.instance.getDetailMovie(movieId).await().let { movie ->
-            callback.onMovieDetailReceived(
-                movie
-            )
-            EspressoIdlingResource.decrement()
+        val resultTVResponse = MutableLiveData<ApiResponse<List<TvDiscover>>>()
+        val client = ApiConfig.getApiService()
+
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val response = client.getTvDiscover().await()
+                resultTVResponse.postValue(ApiResponse.success(response.results!!))
+            } catch (e: IOException) {
+                e.printStackTrace()
+                resultTVResponse.postValue(
+                    ApiResponse.error(
+                        e.message.toString(),
+                        mutableListOf()
+                    )
+                )
+            }
         }
-    }
-
-    interface LoadMoviesCallback {
-        fun onAllMoviesReceived(movieResponse: List<MovieDiscover>)
-    }
-
-    interface LoadMovieDetailCallback {
-        fun onMovieDetailReceived(movieResponse: MovieDiscover)
-    }
-
-    suspend fun getTvDiscover(
-        callback: LoadTvShowCallback
-    ) {
-        EspressoIdlingResource.increment()
-        ApiConfig.instance.getTvDiscover().await().results.let { listTvShow ->
-            callback.onAllTvShowReceived(
-                listTvShow
-            )
-            EspressoIdlingResource.decrement()
-        }
-    }
-
-    suspend fun getTvShowDetail(tvShowId: Int, callback: LoadTvShowDetailCallback) {
-        EspressoIdlingResource.increment()
-        ApiConfig.instance.getDetailTvShow(tvShowId).await().let { tvShow ->
-            callback.onTvShowDetailReceived(
-                tvShow
-            )
-            EspressoIdlingResource.decrement()
-        }
-    }
-
-    interface LoadTvShowCallback {
-        fun onAllTvShowReceived(tvShowResponse: List<TvDiscover>)
-    }
-
-    interface LoadTvShowDetailCallback {
-        fun onTvShowDetailReceived(tvShowResponse: TvDiscover)
+        EspressoIdlingResource.decrement()
+        return resultTVResponse
     }
 }

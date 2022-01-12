@@ -4,16 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import com.edisiswanto.moviecatalogue.R
-import com.edisiswanto.moviecatalogue.data.MovieEntity
-import com.edisiswanto.moviecatalogue.data.TvEntity
+import com.edisiswanto.moviecatalogue.data.source.local.entity.MovieEntity
+import com.edisiswanto.moviecatalogue.data.source.local.entity.TvEntity
 import com.edisiswanto.moviecatalogue.databinding.ActivityDetailTvBinding
 import com.edisiswanto.moviecatalogue.databinding.ContentDetailTvBinding
 import com.edisiswanto.moviecatalogue.ui.movie.MovieFragment
-import com.edisiswanto.moviecatalogue.utils.Helper
 import com.edisiswanto.moviecatalogue.utils.Helper.setImageWithGlide
 import com.edisiswanto.moviecatalogue.viewmodel.ViewModelFactory
 
@@ -36,7 +32,7 @@ class DetailTvActivity : AppCompatActivity() {
 
         val detail = intent.getParcelableExtra<MovieEntity>(EXTRA_TV) as TvEntity
 
-        val factory = ViewModelFactory.getInstance()
+        val factory = ViewModelFactory.getInstance(this)
         val viewModel = ViewModelProvider(
             this@DetailTvActivity,
             factory

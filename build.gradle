@@ -27,6 +27,10 @@ buildscript {
         materialVersion = '1.4.0'
         recyclerViewVersion = '1.2.1'
         glideVersion = '4.12.0'
+        archLifecycleVersion = '2.2.0'
+        roomRuntimeVersion = '2.2.5'
+        roomVersion = '2.2.3'
+        pagingVersion = '2.1.1'
     }
 }
 

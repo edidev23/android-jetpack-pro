@@ -1,7 +1,7 @@
 package com.edisiswanto.moviecatalogue.utils
 
-import com.edisiswanto.moviecatalogue.data.MovieEntity
-import com.edisiswanto.moviecatalogue.data.TvEntity
+import com.edisiswanto.moviecatalogue.data.source.local.entity.MovieEntity
+import com.edisiswanto.moviecatalogue.data.source.local.entity.TvEntity
 import com.edisiswanto.moviecatalogue.data.source.remote.response.MovieDiscover
 import com.edisiswanto.moviecatalogue.data.source.remote.response.TvDiscover
 

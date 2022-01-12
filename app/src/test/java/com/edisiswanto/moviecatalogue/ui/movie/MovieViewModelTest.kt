@@ -3,7 +3,7 @@ package com.edisiswanto.moviecatalogue.ui.movie
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.edisiswanto.moviecatalogue.data.MovieEntity
+import com.edisiswanto.moviecatalogue.data.source.local.entity.MovieEntity
 import com.edisiswanto.moviecatalogue.data.source.CatalogueRepository
 import com.edisiswanto.moviecatalogue.utils.DataDummy
 import com.nhaarman.mockitokotlin2.verify

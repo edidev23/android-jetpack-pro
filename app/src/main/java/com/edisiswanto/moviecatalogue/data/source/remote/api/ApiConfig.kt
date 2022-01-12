@@ -6,27 +6,28 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object ApiConfig {
+class ApiConfig {
+    companion object {
+        private lateinit var client: OkHttpClient
+        private const val apiURL = BuildConfig.API_URL
 
-    val loggingInterceptor = if (BuildConfig.DEBUG) {
-        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-    } else {
-        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
-    }
+        fun getApiService(): ApiService {
+            val loggingInterceptor = if (BuildConfig.DEBUG) {
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+            } else {
+                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
+            }
 
-    private val httpClient = OkHttpClient.Builder().addInterceptor(loggingInterceptor).apply {}.build()
+            client = OkHttpClient.Builder()
+                .addInterceptor(loggingInterceptor)
+                .build()
 
-    private val retrofit: Retrofit.Builder by lazy {
-        Retrofit.Builder().apply {
-            client(httpClient)
-            baseUrl(BuildConfig.API_URL)
-            addConverterFactory(GsonConverterFactory.create())
+            val retrofit = Retrofit.Builder()
+                .baseUrl(apiURL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build()
+            return retrofit.create(ApiService::class.java)
         }
-    }
-
-    val instance: ApiService by lazy {
-        retrofit
-            .build()
-            .create(ApiService::class.java)
     }
 }
