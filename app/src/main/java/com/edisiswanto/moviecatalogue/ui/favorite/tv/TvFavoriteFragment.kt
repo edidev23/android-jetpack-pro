@@ -24,7 +24,7 @@ class TvFavoriteFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentTvFavoriteBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -41,7 +41,7 @@ class TvFavoriteFragment : Fragment() {
 
             tvAdapter = TvAdapter()
 
-            itemTouchHelper.attachToRecyclerView(binding?.rvTv)
+            itemTouchHelper.attachToRecyclerView(binding.rvTv)
 
             viewModel.getBookmarkedTv().observe(viewLifecycleOwner, { tvShow ->
 

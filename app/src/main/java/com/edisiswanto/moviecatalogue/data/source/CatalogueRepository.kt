@@ -12,13 +12,21 @@ import com.edisiswanto.moviecatalogue.data.source.remote.response.TvDiscover
 import com.edisiswanto.moviecatalogue.data.source.remote.vo.ApiResponse
 import com.edisiswanto.moviecatalogue.utils.AppExecutors
 import com.edisiswanto.moviecatalogue.vo.Resource
-import javax.inject.Inject
 
-class CatalogueRepository @Inject private constructor(
+class CatalogueRepository private constructor(
     private val remoteDataSource: RemoteDataSource, private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
 ) :
     CatalogueDataSource {
+
+    override fun getMovieSort(sort: String): LiveData<PagedList<MovieEntity>> {
+        val config = PagedList.Config.Builder()
+            .setEnablePlaceholders(false)
+            .setInitialLoadSizeHint(4)
+            .setPageSize(4)
+            .build()
+        return LivePagedListBuilder(localDataSource.getMovieSort(sort), config).build()
+    }
 
     override fun getMovieDiscover(): LiveData<Resource<PagedList<MovieEntity>>> {
         return object :

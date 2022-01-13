@@ -8,8 +8,6 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.edisiswanto.moviecatalogue.R
 import com.edisiswanto.moviecatalogue.ui.favorite.movie.MovieFavoriteFragment
 import com.edisiswanto.moviecatalogue.ui.favorite.tv.TvFavoriteFragment
-import com.edisiswanto.moviecatalogue.ui.movie.MovieFragment
-import com.edisiswanto.moviecatalogue.ui.tv.TvFragment
 
 class SectionPagerFavorite(private val mContext: Context, fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 

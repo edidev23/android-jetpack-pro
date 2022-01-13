@@ -4,13 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import androidx.paging.PagedList
 import com.edisiswanto.moviecatalogue.data.source.local.entity.MovieEntity
 import com.edisiswanto.moviecatalogue.data.source.CatalogueRepository
 
 class DetailMovieViewModel(private val catalogRepository: CatalogueRepository) : ViewModel() {
 
-    val movieId = MutableLiveData<Int>()
+    private val movieId = MutableLiveData<Int>()
 
     fun setSelectedMovie(movieId: Int) {
         this.movieId.value = movieId

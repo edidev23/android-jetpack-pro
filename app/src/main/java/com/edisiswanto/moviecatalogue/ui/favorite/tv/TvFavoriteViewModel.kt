@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
 import com.edisiswanto.moviecatalogue.data.source.CatalogueRepository
-import com.edisiswanto.moviecatalogue.data.source.local.entity.MovieEntity
 import com.edisiswanto.moviecatalogue.data.source.local.entity.TvEntity
 
 class TvFavoriteViewModel constructor(private val catalogueRepository: CatalogueRepository) :

@@ -5,6 +5,7 @@ import androidx.paging.DataSource
 import com.edisiswanto.moviecatalogue.data.source.local.entity.MovieEntity
 import com.edisiswanto.moviecatalogue.data.source.local.entity.TvEntity
 import com.edisiswanto.moviecatalogue.data.source.local.room.MoviesDao
+import com.edisiswanto.moviecatalogue.utils.SortUtils
 
 class LocalDataSource private constructor(private val mMoviesDao: MoviesDao) {
 
@@ -13,6 +14,11 @@ class LocalDataSource private constructor(private val mMoviesDao: MoviesDao) {
 
         fun getInstance(movieDao: MoviesDao): LocalDataSource =
             INSTANCE ?: LocalDataSource(movieDao)
+    }
+
+    fun getMovieSort(sort: String): DataSource.Factory<Int, MovieEntity> {
+        val query = SortUtils.getSortedQuery(sort)
+        return mMoviesDao.getMovieSort(query)
     }
 
     fun getAllMovies(): DataSource.Factory<Int, MovieEntity> = mMoviesDao.getMovies()

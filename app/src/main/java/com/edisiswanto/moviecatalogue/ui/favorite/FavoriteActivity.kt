@@ -1,11 +1,9 @@
 package com.edisiswanto.moviecatalogue.ui.favorite
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.edisiswanto.moviecatalogue.R
 import com.edisiswanto.moviecatalogue.databinding.ActivityFavoriteBinding
-import com.edisiswanto.moviecatalogue.databinding.ActivityHomeBinding
-import com.edisiswanto.moviecatalogue.ui.home.SectionsPagerAdapter
 
 class FavoriteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

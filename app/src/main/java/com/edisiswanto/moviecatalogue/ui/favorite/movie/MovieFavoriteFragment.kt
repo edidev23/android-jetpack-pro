@@ -25,7 +25,7 @@ class MovieFavoriteFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMovieFavoriteBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -42,7 +42,7 @@ class MovieFavoriteFragment : Fragment() {
 
             movieAdapter = MovieAdapter()
 
-            itemTouchHelper.attachToRecyclerView(binding?.rvMovie)
+            itemTouchHelper.attachToRecyclerView(binding.rvMovie)
 
             viewModel.getMoviesBookmark().observe(viewLifecycleOwner, { movies ->
 

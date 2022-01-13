@@ -9,7 +9,7 @@ import com.edisiswanto.moviecatalogue.data.source.CatalogueRepository
 
 class DetailTvViewModel(private val catalogRepository: CatalogueRepository) : ViewModel() {
 
-    val tvId = MutableLiveData<Int>()
+    private val tvId = MutableLiveData<Int>()
 
     fun setSelectedTv(tvId: Int) {
         this.tvId.value = tvId

@@ -19,4 +19,7 @@
     <string name="page_favorite">Favorite</string>
     <string name="message_undo">Batalkan menghapus item sebelumnya?</string>
     <string name="message_ok">OK</string>
+    <string name="menu_newest">Terbaru</string>
+    <string name="menu_oldest">Terlama</string>
+    <string name="menu_random">Random</string>
 </resources>

@@ -29,6 +29,7 @@
         <entry key="app/src/main/res/layout/items_movie.xml" value="0.25" />
         <entry key="app/src/main/res/layout/items_tv.xml" value="0.10416666666666667" />
         <entry key="app/src/main/res/menu/menu_detail.xml" value="0.2015625" />
+        <entry key="app/src/main/res/menu/menu_main.xml" value="0.1875" />
       </map>
     </option>
   </component>

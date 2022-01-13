@@ -32,7 +32,7 @@ class RemoteDataSource {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = client.getMovieDiscover().await()
-                resultMovieResponse.postValue(ApiResponse.success(response.results!!))
+                resultMovieResponse.postValue(ApiResponse.success(response.results))
             } catch (e: IOException) {
                 e.printStackTrace()
                 resultMovieResponse.postValue(
@@ -55,7 +55,7 @@ class RemoteDataSource {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 val response = client.getTvDiscover().await()
-                resultTVResponse.postValue(ApiResponse.success(response.results!!))
+                resultTVResponse.postValue(ApiResponse.success(response.results))
             } catch (e: IOException) {
                 e.printStackTrace()
                 resultTVResponse.postValue(

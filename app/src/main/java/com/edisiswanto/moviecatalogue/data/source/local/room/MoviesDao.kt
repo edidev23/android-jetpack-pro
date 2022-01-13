@@ -3,11 +3,15 @@ package com.edisiswanto.moviecatalogue.data.source.local.room
 import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import androidx.room.*
+import androidx.sqlite.db.SupportSQLiteQuery
 import com.edisiswanto.moviecatalogue.data.source.local.entity.MovieEntity
 import com.edisiswanto.moviecatalogue.data.source.local.entity.TvEntity
 
 @Dao
 interface MoviesDao {
+
+    @RawQuery(observedEntities = [MovieEntity::class])
+    fun getMovieSort(query: SupportSQLiteQuery): DataSource.Factory<Int, MovieEntity>
 
     @Query("SELECT * FROM movieentities")
     fun getMovies(): DataSource.Factory<Int, MovieEntity>
