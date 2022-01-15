@@ -21,7 +21,7 @@
             android:backgroundTint="@color/yellow_700"
             android:text="@string/menu_newest"
             android:id="@+id/btn_news"
-            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -29,7 +29,7 @@
             android:backgroundTint="@color/yellow_700"
             android:text="@string/menu_oldest"
             android:id="@+id/btn_oldest"
-            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
