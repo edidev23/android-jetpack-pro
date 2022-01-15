@@ -9,6 +9,8 @@ import com.edisiswanto.moviecatalogue.vo.Resource
 interface CatalogueDataSource {
     fun getMovieSort(sort: String): LiveData<PagedList<MovieEntity>>
 
+    fun getTvSort(sort: String): LiveData<PagedList<TvEntity>>
+
     fun getMovieDiscover(): LiveData<Resource<PagedList<MovieEntity>>>
 
     fun getTvDiscover(): LiveData<Resource<PagedList<TvEntity>>>

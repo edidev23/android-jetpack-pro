@@ -13,6 +13,9 @@ interface MoviesDao {
     @RawQuery(observedEntities = [MovieEntity::class])
     fun getMovieSort(query: SupportSQLiteQuery): DataSource.Factory<Int, MovieEntity>
 
+    @RawQuery(observedEntities = [TvEntity::class])
+    fun getTvSort(query: SupportSQLiteQuery): DataSource.Factory<Int, TvEntity>
+
     @Query("SELECT * FROM movieentities")
     fun getMovies(): DataSource.Factory<Int, MovieEntity>
 

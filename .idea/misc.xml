@@ -8,7 +8,9 @@
         <entry key="app/src/main/res/drawable/bg_button.xml" value="0.21770833333333334" />
         <entry key="app/src/main/res/drawable/bg_button_disable.xml" value="0.21770833333333334" />
         <entry key="app/src/main/res/drawable/bg_score.xml" value="0.21770833333333334" />
+        <entry key="app/src/main/res/drawable/bg_yellow_gradient.xml" value="0.2109375" />
         <entry key="app/src/main/res/drawable/ic_baseline_movie_creation_24.xml" value="0.21197916666666666" />
+        <entry key="app/src/main/res/drawable/ic_baseline_refresh_24.xml" value="0.20364583333333333" />
         <entry key="app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.21770833333333334" />
         <entry key="app/src/main/res/drawable/ic_bookmark_bordered.xml" value="0.21770833333333334" />
         <entry key="app/src/main/res/drawable/ic_bookmark_white.xml" value="0.21770833333333334" />
@@ -22,7 +24,7 @@
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.13994565217391305" />
         <entry key="app/src/main/res/layout/content_detail_movie.xml" value="0.125" />
         <entry key="app/src/main/res/layout/content_detail_tv.xml" value="0.17844202898550723" />
-        <entry key="app/src/main/res/layout/fragment_movie.xml" value="0.10416666666666667" />
+        <entry key="app/src/main/res/layout/fragment_movie.xml" value="0.21481481481481482" />
         <entry key="app/src/main/res/layout/fragment_movie_favorite.xml" value="0.18070652173913043" />
         <entry key="app/src/main/res/layout/fragment_tv.xml" value="0.1752786220871327" />
         <entry key="app/src/main/res/layout/fragment_tv_favorite.xml" value="0.18070652173913043" />

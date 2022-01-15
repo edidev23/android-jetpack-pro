@@ -28,6 +28,15 @@ class CatalogueRepository private constructor(
         return LivePagedListBuilder(localDataSource.getMovieSort(sort), config).build()
     }
 
+    override fun getTvSort(sort: String): LiveData<PagedList<TvEntity>> {
+        val config = PagedList.Config.Builder()
+            .setEnablePlaceholders(false)
+            .setInitialLoadSizeHint(4)
+            .setPageSize(4)
+            .build()
+        return LivePagedListBuilder(localDataSource.getTvSort(sort), config).build()
+    }
+
     override fun getMovieDiscover(): LiveData<Resource<PagedList<MovieEntity>>> {
         return object :
             NetworkBoundResource<PagedList<MovieEntity>, List<MovieDiscover>>(appExecutors) {
@@ -46,9 +55,9 @@ class CatalogueRepository private constructor(
             public override fun createCall(): LiveData<ApiResponse<List<MovieDiscover>>> =
                 remoteDataSource.getMovies()
 
-            public override fun saveCallResult(movieResponses: List<MovieDiscover>) {
+            public override fun saveCallResult(data: List<MovieDiscover>) {
                 val movieList = ArrayList<MovieEntity>()
-                for (response in movieResponses) {
+                for (response in data) {
                     val movie = MovieEntity(
                         response.id,
                         response.title,
@@ -83,9 +92,9 @@ class CatalogueRepository private constructor(
             public override fun createCall(): LiveData<ApiResponse<List<TvDiscover>>> =
                 remoteDataSource.getTvShow()
 
-            public override fun saveCallResult(tvResponse: List<TvDiscover>) {
+            public override fun saveCallResult(data: List<TvDiscover>) {
                 val tvList = ArrayList<TvEntity>()
-                for (response in tvResponse) {
+                for (response in data) {
                     val tvShow = TvEntity(
                         response.id,
                         response.name,
@@ -105,8 +114,8 @@ class CatalogueRepository private constructor(
     override fun getMovieDetail(movieId: Int): LiveData<MovieEntity> =
         localDataSource.getDetailMovie(movieId)
 
-    override fun getTvShowDetail(tvShowId: Int): LiveData<TvEntity> =
-        localDataSource.getDetailTvShow(tvShowId)
+    override fun getTvShowDetail(tvId: Int): LiveData<TvEntity> =
+        localDataSource.getDetailTvShow(tvId)
 
     override fun getBookmarkedMovie(): LiveData<PagedList<MovieEntity>> {
         val config = PagedList.Config.Builder()
@@ -129,8 +138,8 @@ class CatalogueRepository private constructor(
         return LivePagedListBuilder(localDataSource.getBookmarkedTv(), config).build()
     }
 
-    override fun setTvBookmark(tvShow: TvEntity, state: Boolean)  =
-        appExecutors.diskIO().execute { localDataSource.setTvBookmark(tvShow, state) }
+    override fun setTvBookmark(tv: TvEntity, state: Boolean)  =
+        appExecutors.diskIO().execute { localDataSource.setTvBookmark(tv, state) }
 
     companion object {
         @Volatile

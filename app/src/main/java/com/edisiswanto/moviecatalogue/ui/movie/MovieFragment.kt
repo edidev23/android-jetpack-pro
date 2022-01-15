@@ -6,9 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.edisiswanto.moviecatalogue.data.source.local.entity.MovieEntity
 import com.edisiswanto.moviecatalogue.databinding.FragmentMovieBinding
+import com.edisiswanto.moviecatalogue.utils.SortUtils
 import com.edisiswanto.moviecatalogue.viewmodel.ViewModelFactory
 import com.edisiswanto.moviecatalogue.vo.Status
 
@@ -16,6 +20,7 @@ class MovieFragment : Fragment() {
     private var _binding: FragmentMovieBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: MovieViewModel
+    private lateinit var movieAdapter: MovieAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +40,7 @@ class MovieFragment : Fragment() {
                 factory
             )[MovieViewModel::class.java]
 
-            val movieAdapter = MovieAdapter()
+            movieAdapter = MovieAdapter()
 
             viewModel.getMovies().observe(viewLifecycleOwner, { movies ->
 
@@ -59,6 +64,26 @@ class MovieFragment : Fragment() {
                 }
             })
 
+            binding.btnNews.setOnClickListener {
+                viewModel.setSort(SortUtils.NEWEST)
+                viewModel.movieSort.observe(viewLifecycleOwner, movieObserver)
+            }
+
+            binding.btnOldest.setOnClickListener {
+                viewModel.setSort(SortUtils.OLDEST)
+                viewModel.movieSort.observe(viewLifecycleOwner, movieObserver)
+            }
+
+            binding.btnRandom.setOnClickListener {
+                viewModel.setSort(SortUtils.RANDOM)
+                viewModel.movieSort.observe(viewLifecycleOwner, movieObserver)
+            }
+        }
+    }
+
+    private val movieObserver = Observer<PagedList<MovieEntity>> { movieList ->
+        if (movieList != null) {
+             movieAdapter.submitList(movieList)
         }
     }
 

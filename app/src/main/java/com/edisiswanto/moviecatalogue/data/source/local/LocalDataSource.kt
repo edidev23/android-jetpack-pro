@@ -17,8 +17,13 @@ class LocalDataSource private constructor(private val mMoviesDao: MoviesDao) {
     }
 
     fun getMovieSort(sort: String): DataSource.Factory<Int, MovieEntity> {
-        val query = SortUtils.getSortedQuery(sort)
+        val query = SortUtils.getSortedMovieQuery(sort)
         return mMoviesDao.getMovieSort(query)
+    }
+
+    fun getTvSort(sort: String): DataSource.Factory<Int, TvEntity> {
+        val query = SortUtils.getSortedTvQuery(sort)
+        return mMoviesDao.getTvSort(query)
     }
 
     fun getAllMovies(): DataSource.Factory<Int, MovieEntity> = mMoviesDao.getMovies()
