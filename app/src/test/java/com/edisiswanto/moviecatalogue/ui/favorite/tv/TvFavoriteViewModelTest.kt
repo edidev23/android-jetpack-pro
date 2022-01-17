@@ -35,7 +35,7 @@ class TvFavoriteViewModelTest {
 
     @Test
     fun getBookmarkedTv() {
-        Mockito.`when`(tvPagedList?.size).thenReturn(5)
+        Mockito.`when`(tvPagedList.size).thenReturn(5)
         val tvDummy = MutableLiveData<PagedList<TvEntity>>()
         tvDummy.value = tvPagedList
 

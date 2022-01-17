@@ -6,8 +6,9 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.edisiswanto.moviecatalogue.data.source.local.entity.MovieEntity
 import com.edisiswanto.moviecatalogue.data.source.CatalogueRepository
+import javax.inject.Inject
 
-class DetailMovieViewModel(private val catalogRepository: CatalogueRepository) : ViewModel() {
+class DetailMovieViewModel @Inject constructor(private val catalogRepository: CatalogueRepository) : ViewModel() {
 
     private val movieId = MutableLiveData<Int>()
 

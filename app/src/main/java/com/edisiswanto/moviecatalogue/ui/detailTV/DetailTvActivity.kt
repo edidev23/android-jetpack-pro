@@ -1,10 +1,10 @@
 package com.edisiswanto.moviecatalogue.ui.detailTV
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.edisiswanto.moviecatalogue.R
@@ -15,6 +15,7 @@ import com.edisiswanto.moviecatalogue.databinding.ContentDetailTvBinding
 import com.edisiswanto.moviecatalogue.ui.movie.MovieFragment
 import com.edisiswanto.moviecatalogue.utils.Helper.setImageWithGlide
 import com.edisiswanto.moviecatalogue.viewmodel.ViewModelFactory
+import javax.inject.Inject
 
 class DetailTvActivity : AppCompatActivity() {
 
@@ -23,6 +24,9 @@ class DetailTvActivity : AppCompatActivity() {
 
     private lateinit var viewModel : DetailTvViewModel
     private var menu: Menu? = null
+
+    @Inject
+    lateinit var factory: ViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +42,7 @@ class DetailTvActivity : AppCompatActivity() {
 
         val detail = intent.getParcelableExtra<MovieEntity>(EXTRA_TV) as TvEntity
 
-        val factory = ViewModelFactory.getInstance(this)
+        factory = ViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(
             this@DetailTvActivity,
             factory

@@ -5,8 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
 import com.edisiswanto.moviecatalogue.data.source.CatalogueRepository
 import com.edisiswanto.moviecatalogue.data.source.local.entity.MovieEntity
+import javax.inject.Inject
 
-class MovieFavoriteViewModel constructor(private val catalogueRepository: CatalogueRepository) :
+class MovieFavoriteViewModel @Inject constructor(private val catalogueRepository: CatalogueRepository) :
     ViewModel() {
 
     fun getMoviesBookmark(): LiveData<PagedList<MovieEntity>> = catalogueRepository.getBookmarkedMovie()

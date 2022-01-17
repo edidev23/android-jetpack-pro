@@ -11,8 +11,9 @@ import com.edisiswanto.moviecatalogue.ui.favorite.movie.MovieFavoriteViewModel
 import com.edisiswanto.moviecatalogue.ui.favorite.tv.TvFavoriteViewModel
 import com.edisiswanto.moviecatalogue.ui.movie.MovieViewModel
 import com.edisiswanto.moviecatalogue.ui.tv.TvViewModel
+import javax.inject.Inject
 
-class ViewModelFactory private constructor(private val mCatalogRepository: CatalogueRepository): ViewModelProvider.NewInstanceFactory() {
+class ViewModelFactory @Inject constructor(private val mCatalogRepository: CatalogueRepository): ViewModelProvider.NewInstanceFactory() {
 
     companion object {
         @Volatile

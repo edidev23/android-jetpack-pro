@@ -8,8 +8,9 @@ import androidx.paging.PagedList
 import com.edisiswanto.moviecatalogue.data.source.CatalogueRepository
 import com.edisiswanto.moviecatalogue.data.source.local.entity.MovieEntity
 import com.edisiswanto.moviecatalogue.vo.Resource
+import javax.inject.Inject
 
-class MovieViewModel constructor(private val catalogueRepository: CatalogueRepository) :
+class MovieViewModel @Inject constructor(private val catalogueRepository: CatalogueRepository) :
     ViewModel() {
 
      private val sort = MutableLiveData<String>()

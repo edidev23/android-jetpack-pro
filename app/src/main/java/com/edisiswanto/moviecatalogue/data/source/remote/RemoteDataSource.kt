@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import okio.IOException
 import retrofit2.await
 
-class RemoteDataSource {
+class RemoteDataSource  {
     companion object {
         @Volatile
         private var instance: RemoteDataSource? = null

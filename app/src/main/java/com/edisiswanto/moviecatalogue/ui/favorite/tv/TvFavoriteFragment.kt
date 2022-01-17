@@ -1,10 +1,10 @@
 package com.edisiswanto.moviecatalogue.ui.favorite.tv
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,12 +14,16 @@ import com.edisiswanto.moviecatalogue.databinding.FragmentTvFavoriteBinding
 import com.edisiswanto.moviecatalogue.ui.tv.TvAdapter
 import com.edisiswanto.moviecatalogue.viewmodel.ViewModelFactory
 import com.google.android.material.snackbar.Snackbar
+import javax.inject.Inject
 
 class TvFavoriteFragment : Fragment() {
     private var _binding: FragmentTvFavoriteBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: TvFavoriteViewModel
     private lateinit var tvAdapter: TvAdapter
+
+    @Inject
+    lateinit var factory: ViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +37,7 @@ class TvFavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
 
-            val factory = ViewModelFactory.getInstance(requireActivity())
+            factory = ViewModelFactory.getInstance(requireActivity())
             viewModel = ViewModelProvider(
                 this,
                 factory

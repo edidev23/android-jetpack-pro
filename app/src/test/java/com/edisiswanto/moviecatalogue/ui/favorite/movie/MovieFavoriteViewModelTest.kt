@@ -39,7 +39,7 @@ class MovieFavoriteViewModelTest {
 
     @Test
     fun getMoviesBookmark() {
-        Mockito.`when`(moviePagedList?.size).thenReturn(5)
+        Mockito.`when`(moviePagedList.size).thenReturn(5)
         val movieDummy = MutableLiveData<PagedList<MovieEntity>>()
         movieDummy.value = moviePagedList
 

@@ -6,8 +6,9 @@ import com.edisiswanto.moviecatalogue.data.source.local.entity.MovieEntity
 import com.edisiswanto.moviecatalogue.data.source.local.entity.TvEntity
 import com.edisiswanto.moviecatalogue.data.source.local.room.MoviesDao
 import com.edisiswanto.moviecatalogue.utils.SortUtils
+import javax.inject.Inject
 
-class LocalDataSource private constructor(private val mMoviesDao: MoviesDao) {
+class LocalDataSource @Inject constructor(private val mMoviesDao: MoviesDao) {
 
     companion object {
         private var INSTANCE: LocalDataSource? = null

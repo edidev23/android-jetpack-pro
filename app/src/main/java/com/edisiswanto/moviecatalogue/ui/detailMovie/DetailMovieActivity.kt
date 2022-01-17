@@ -14,6 +14,7 @@ import com.edisiswanto.moviecatalogue.databinding.ContentDetailMovieBinding
 import com.edisiswanto.moviecatalogue.ui.movie.MovieFragment
 import com.edisiswanto.moviecatalogue.utils.Helper.setImageWithGlide
 import com.edisiswanto.moviecatalogue.viewmodel.ViewModelFactory
+import javax.inject.Inject
 
 class DetailMovieActivity : AppCompatActivity() {
 
@@ -22,6 +23,9 @@ class DetailMovieActivity : AppCompatActivity() {
 
     private lateinit var viewModel: DetailMovieViewModel
     private var menu: Menu? = null
+
+    @Inject
+    lateinit var factory: ViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +41,7 @@ class DetailMovieActivity : AppCompatActivity() {
 
         val detail = intent.getParcelableExtra<MovieEntity>(EXTRA_MOVIE) as MovieEntity
 
-        val factory = ViewModelFactory.getInstance(this)
+        factory = ViewModelFactory.getInstance(this)
         viewModel = ViewModelProvider(
             this@DetailMovieActivity,
             factory

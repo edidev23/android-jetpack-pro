@@ -12,8 +12,9 @@ import com.edisiswanto.moviecatalogue.data.source.remote.response.TvDiscover
 import com.edisiswanto.moviecatalogue.data.source.remote.vo.ApiResponse
 import com.edisiswanto.moviecatalogue.utils.AppExecutors
 import com.edisiswanto.moviecatalogue.vo.Resource
+import javax.inject.Inject
 
-class CatalogueRepository private constructor(
+class CatalogueRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource, private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
 ) :
@@ -138,8 +139,8 @@ class CatalogueRepository private constructor(
         return LivePagedListBuilder(localDataSource.getBookmarkedTv(), config).build()
     }
 
-    override fun setTvBookmark(tv: TvEntity, state: Boolean)  =
-        appExecutors.diskIO().execute { localDataSource.setTvBookmark(tv, state) }
+    override fun setTvBookmark(tvShow: TvEntity, state: Boolean)  =
+        appExecutors.diskIO().execute { localDataSource.setTvBookmark(tvShow, state) }
 
     companion object {
         @Volatile

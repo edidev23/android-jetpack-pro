@@ -1,8 +1,8 @@
 package com.edisiswanto.moviecatalogue.ui.home
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.edisiswanto.moviecatalogue.R
 import com.edisiswanto.moviecatalogue.databinding.ActivityHomeBinding
 import com.edisiswanto.moviecatalogue.ui.favorite.FavoriteActivity

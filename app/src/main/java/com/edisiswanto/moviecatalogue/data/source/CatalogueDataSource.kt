@@ -25,5 +25,5 @@ interface CatalogueDataSource {
 
     fun getBookmarkedTv(): LiveData<PagedList<TvEntity>>
 
-    fun setTvBookmark(movie: TvEntity, state: Boolean)
+    fun setTvBookmark(tvShow: TvEntity, state: Boolean)
 }

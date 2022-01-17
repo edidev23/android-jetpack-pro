@@ -1,11 +1,11 @@
 package com.edisiswanto.moviecatalogue.ui.movie
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.paging.PagedList
@@ -15,12 +15,16 @@ import com.edisiswanto.moviecatalogue.databinding.FragmentMovieBinding
 import com.edisiswanto.moviecatalogue.utils.SortUtils
 import com.edisiswanto.moviecatalogue.viewmodel.ViewModelFactory
 import com.edisiswanto.moviecatalogue.vo.Status
+import javax.inject.Inject
 
 class MovieFragment : Fragment() {
     private var _binding: FragmentMovieBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: MovieViewModel
     private lateinit var movieAdapter: MovieAdapter
+
+    @Inject
+    lateinit var factory: ViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +38,7 @@ class MovieFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         if (activity != null) {
 
-            val factory = ViewModelFactory.getInstance(requireActivity())
+            factory = ViewModelFactory.getInstance(requireActivity())
             viewModel = ViewModelProvider(
                 this,
                 factory
