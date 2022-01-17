@@ -39,6 +39,44 @@ class HomeActivityTest {
     }
 
     @Test
+    fun loadMovieSort() {
+        onView(withId(R.id.btn_news)).perform(click())
+        onView(withId(R.id.rv_movie)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(5))
+
+        onView(withId(R.id.btn_oldest)).perform(click())
+        onView(withId(R.id.rv_movie)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(5))
+
+        onView(withId(R.id.btn_random)).perform(click())
+        onView(withId(R.id.rv_movie)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(5))
+    }
+
+    @Test
+    fun loadTvSort() {
+        onView(withText("TV SHOW")).perform(click())
+        onView(withId(R.id.btntv_news)).perform(click())
+        onView(withId(R.id.rv_tv)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_tv)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(5))
+
+        onView(withId(R.id.btntv_oldest)).perform(click())
+        onView(withId(R.id.rv_tv)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_tv)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(5))
+
+        onView(withId(R.id.btntv_random)).perform(click())
+        onView(withId(R.id.rv_tv)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_tv)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(5))
+    }
+
+    @Test
+    fun loadTv() {
+        onView(withText("TV SHOW")).perform(click())
+        onView(withId(R.id.rv_tv)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_tv)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(5))
+    }
+
+    @Test
     fun loadDetailMovie() {
         onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         onView(withId(R.id.detail_content_movie)).check(matches(isDisplayed()))
@@ -51,13 +89,6 @@ class HomeActivityTest {
         onView(withId(R.id.tv_item_date)).perform(ViewActions.swipeUp()).check(matches(isDisplayed()))
         onView(withId(R.id.rating)).perform(ViewActions.swipeUp()).check(matches(isDisplayed()))
         onView(withId(R.id.tv_item_score)).check(matches(isDisplayed()))
-    }
-
-    @Test
-    fun loadTv() {
-        onView(withText("TV SHOW")).perform(click())
-        onView(withId(R.id.rv_tv)).check(matches(isDisplayed()))
-        onView(withId(R.id.rv_tv)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(5))
     }
 
     @Test
@@ -74,5 +105,50 @@ class HomeActivityTest {
         onView(withId(R.id.tv_item_date_tv)).perform(ViewActions.swipeUp()).check(matches(isDisplayed()))
         onView(withId(R.id.rating_tv)).perform(ViewActions.swipeUp()).check(matches(isDisplayed()))
         onView(withId(R.id.tv_item_score_tv)).check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun loadBookmarksMovie() {
+        onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        onView(withId(R.id.action_bookmark)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
+        onView(withId(R.id.fab_favorite)).perform(click())
+        onView(withId(R.id.rv_movie)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        onView(withId(R.id.img_poster)).perform(ViewActions.swipeUp()).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_title)).perform(ViewActions.swipeUp()).check(matches(isDisplayed()))
+
+        onView(withId(R.id.tv_overview)).perform(ViewActions.swipeUp()).check(matches(isDisplayed()))
+        onView(withId(R.id.release)).perform(ViewActions.swipeUp()).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_item_date)).perform(ViewActions.swipeUp()).check(matches(isDisplayed()))
+        onView(withId(R.id.rating)).perform(ViewActions.swipeUp()).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_item_score)).check(matches(isDisplayed()))
+
+        onView(withId(R.id.action_bookmark)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
+    }
+
+    @Test
+    fun loadBookmarksTv() {
+        onView(withText("TV SHOW")).perform(click())
+        onView(withId(R.id.rv_tv)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        onView(withId(R.id.action_bookmark)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
+        onView(withId(R.id.fab_favorite)).perform(click())
+
+        onView(withText("TV SHOW")).perform(click())
+        onView(withId(R.id.rv_tv)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_tv)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        onView(withId(R.id.img_poster_tv)).perform(ViewActions.swipeUp()).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_title_tv)).perform(ViewActions.swipeUp()).check(matches(isDisplayed()))
+
+        onView(withId(R.id.tv_overview_tv)).perform(ViewActions.swipeUp()).check(matches(isDisplayed()))
+        onView(withId(R.id.release_tv)).perform(ViewActions.swipeUp()).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_item_date_tv)).perform(ViewActions.swipeUp()).check(matches(isDisplayed()))
+        onView(withId(R.id.rating_tv)).perform(ViewActions.swipeUp()).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_item_score_tv)).check(matches(isDisplayed()))
+
+        onView(withId(R.id.action_bookmark)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
     }
 }

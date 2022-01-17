@@ -23,7 +23,21 @@ class FakeCatalogueRepository constructor(
 )
     : CatalogueDataSource {
     override fun getMovieSort(sort: String): LiveData<PagedList<MovieEntity>> {
-        TODO("Not yet implemented")
+        val config = PagedList.Config.Builder()
+            .setEnablePlaceholders(false)
+            .setInitialLoadSizeHint(4)
+            .setPageSize(4)
+            .build()
+        return LivePagedListBuilder(localDataSource.getMovieSort(sort), config).build()
+    }
+
+    override fun getTvSort(sort: String): LiveData<PagedList<TvEntity>> {
+        val config = PagedList.Config.Builder()
+            .setEnablePlaceholders(false)
+            .setInitialLoadSizeHint(4)
+            .setPageSize(4)
+            .build()
+        return LivePagedListBuilder(localDataSource.getTvSort(sort), config).build()
     }
 
     override fun getMovieDiscover(): LiveData<Resource<PagedList<MovieEntity>>> {

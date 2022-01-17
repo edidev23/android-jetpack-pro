@@ -65,17 +65,17 @@ class TvFragment : Fragment() {
                 }
             })
 
-            binding.btnNews.setOnClickListener {
+            binding.btntvNews.setOnClickListener {
                 viewModel.setSort(SortUtils.NEWEST)
                 viewModel.tvSort.observe(viewLifecycleOwner, tvObserver)
             }
 
-            binding.btnOldest.setOnClickListener {
+            binding.btntvOldest.setOnClickListener {
                 viewModel.setSort(SortUtils.OLDEST)
                 viewModel.tvSort.observe(viewLifecycleOwner, tvObserver)
             }
 
-            binding.btnRandom.setOnClickListener {
+            binding.btntvRandom.setOnClickListener {
                 viewModel.setSort(SortUtils.RANDOM)
                 viewModel.tvSort.observe(viewLifecycleOwner, tvObserver)
             }

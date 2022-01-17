@@ -5,13 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.edisiswanto.moviecatalogue.data.source.local.entity.TvEntity
 import com.edisiswanto.moviecatalogue.data.source.CatalogueRepository
+import com.edisiswanto.moviecatalogue.data.source.local.entity.MovieEntity
 import com.edisiswanto.moviecatalogue.utils.DataDummy
+import junit.framework.Assert
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
+import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
@@ -36,16 +39,21 @@ class DetailTvViewModelTest {
     }
 
     @Test
-    fun detailMovie() {
-
-        viewModel.detailTv.observeForever(observer)
-
+    fun getTvShowDetail() {
         val detailTv = MutableLiveData<TvEntity>()
         detailTv.value = dummyTv
 
-        val expectedValue = detailTv.value
-        val actualValue = viewModel.detailTv.value
+        Mockito.`when`(catalogueRepository.getTvShowDetail(dummyTv.id)).thenReturn(detailTv)
 
-        assertEquals(expectedValue, actualValue)
+        Assert.assertNotNull(detailTv)
+        assertEquals(dummyTv.id, detailTv?.value?.id)
+        assertEquals(dummyTv.name, detailTv?.value?.name)
+        assertEquals(dummyTv.overview, detailTv?.value?.overview)
+        assertEquals(dummyTv.firstAirDate, detailTv?.value?.firstAirDate)
+        assertEquals(dummyTv.voteAverage, detailTv?.value?.voteAverage)
+        assertEquals(dummyTv.posterPath, detailTv?.value?.posterPath)
+
+        viewModel.detailTv.observeForever(observer)
+        Mockito.verify(observer).onChanged(dummyTv)
     }
 }
