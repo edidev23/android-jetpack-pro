@@ -22,9 +22,10 @@ class DetailTvActivity : AppCompatActivity() {
     private lateinit var binding : ActivityDetailTvBinding
     private lateinit var contentDetailTvBinding: ContentDetailTvBinding
 
-    private lateinit var viewModel : DetailTvViewModel
     private var menu: Menu? = null
 
+    @Inject
+    lateinit var viewModel : DetailTvViewModel
     @Inject
     lateinit var factory: ViewModelFactory
 

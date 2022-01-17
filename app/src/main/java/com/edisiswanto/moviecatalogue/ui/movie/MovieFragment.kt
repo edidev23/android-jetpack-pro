@@ -20,9 +20,10 @@ import javax.inject.Inject
 class MovieFragment : Fragment() {
     private var _binding: FragmentMovieBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: MovieViewModel
     private lateinit var movieAdapter: MovieAdapter
 
+    @Inject
+    lateinit var viewModel: MovieViewModel
     @Inject
     lateinit var factory: ViewModelFactory
 

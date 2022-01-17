@@ -19,9 +19,10 @@ import javax.inject.Inject
 class TvFavoriteFragment : Fragment() {
     private var _binding: FragmentTvFavoriteBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: TvFavoriteViewModel
     private lateinit var tvAdapter: TvAdapter
 
+    @Inject
+    lateinit var viewModel: TvFavoriteViewModel
     @Inject
     lateinit var factory: ViewModelFactory
 

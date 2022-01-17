@@ -20,9 +20,10 @@ class MovieFavoriteFragment : Fragment() {
 
     private var _binding: FragmentMovieFavoriteBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: MovieFavoriteViewModel
     private lateinit var movieAdapter: MovieAdapter
 
+    @Inject
+    lateinit var viewModel: MovieFavoriteViewModel
     @Inject
     lateinit var factory: ViewModelFactory
 

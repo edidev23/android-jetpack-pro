@@ -21,9 +21,10 @@ class TvFragment : Fragment() {
 
     private var _binding: FragmentTvBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: TvViewModel
     private lateinit var tvAdapter: TvAdapter
 
+    @Inject
+    lateinit var viewModel: TvViewModel
     @Inject
     lateinit var factory: ViewModelFactory
 

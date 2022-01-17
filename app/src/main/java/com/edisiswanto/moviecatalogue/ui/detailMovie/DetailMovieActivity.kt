@@ -21,9 +21,10 @@ class DetailMovieActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailMovieBinding
     private lateinit var contentDetailMovieBinding: ContentDetailMovieBinding
 
-    private lateinit var viewModel: DetailMovieViewModel
     private var menu: Menu? = null
 
+    @Inject
+    lateinit var viewModel: DetailMovieViewModel
     @Inject
     lateinit var factory: ViewModelFactory
 
