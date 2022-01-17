@@ -2,13 +2,13 @@ Unit Testing ViewModel
 1. MovieViewModelTest:
     * Memuat Movies:
     - Memastikan data movie tidak null.
-    - Memastikan jumlah data movie sesuai dengan yang diharapkan, yaitu 10 data.
+    - Memastikan jumlah data movie sesuai dengan yang diharapkan, yaitu 5 data.
     - memastikan bahwa terjadi perubahan di observer LiveData
 
 2. TvViewModelTest:
     * Memuat Tv Show:
     - Memastikan data tv show tidak null.
-    - Memastikan jumlah data tv show sesuai dengan yang diharapkan, yaitu 10 data.
+    - Memastikan jumlah data tv show sesuai dengan yang diharapkan, yaitu 5 data.
     - memastikan bahwa terjadi perubahan di observer LiveData
 
 3. DetailMovieViewModelTest:
@@ -33,14 +33,26 @@ Unit Testing ViewModel
     - Memastikan nilai poster path dari api sama dengan poster path dari data dummy
     - memastikan bahwa terjadi perubahan di observer LiveData
 
+5. MovieFavoriteViewModelTest:
+    * Memuat Movies:
+    - Memastikan data movie tidak null.
+    - Memastikan jumlah data movie sesuai dengan yang diharapkan, yaitu 5 data.
+    - memastikan bahwa terjadi perubahan di observer LiveData
+
+6. TvFavoriteViewModelTest:
+    * Memuat Tv Show:
+    - Memastikan data tv show tidak null.
+    - Memastikan jumlah data tv show sesuai dengan yang diharapkan, yaitu 5 data.
+    - memastikan bahwa terjadi perubahan di observer LiveData
+
 5. CatalogueRepositoryTest
     * Memuat data Movie
     - Memastikan data movie tidak null.
-    - Memastikan jumlah data movie sesuai dengan yang diharapkan, yaitu 10 data.
+    - Memastikan jumlah data movie sesuai dengan yang diharapkan, yaitu 5 data.
 
     * Memuat data Tv Show
     - Memastikan data tv show tidak null.
-    - Memastikan jumlah data tv show sesuai dengan yang diharapkan, yaitu 10 data.
+    - Memastikan jumlah data tv show sesuai dengan yang diharapkan, yaitu 5 data.
 
 Instrumental Testing HomeActivityTest
 
@@ -48,7 +60,34 @@ Instrumental Testing HomeActivityTest
    - Memastikan rv_movie dalam keadaan tampil.
    - Gulir rv_movie ke posisi data terakhir.
 
-2. Menampilkan data detail Movie
+2. Menampilkan data Movies Sorting
+   - Menekan tombol "Terbaru" untuk mengambil data terbaru
+   - Memastikan rv_movie dalam keadaan tampil.
+   - Gulir rv_movie ke posisi data terakhir.
+   - Menekan tombol "Terlama" untuk mengambil data terbaru
+   - Memastikan rv_movie dalam keadaan tampil.
+   - Gulir rv_movie ke posisi data terakhir.
+   - Menekan tombol "Random" untuk mengambil data terbaru
+   - Memastikan rv_movie dalam keadaan tampil.
+   - Gulir rv_movie ke posisi data terakhir.
+
+3. Menampilkan data Tv Sorting
+   - Menekan tombol "Terbaru" untuk mengambil data terbaru
+   - Memastikan rv_tv dalam keadaan tampil.
+   - Gulir rv_tv ke posisi data terakhir.
+   - Menekan tombol "Terlama" untuk mengambil data terbaru
+   - Memastikan rv_tv dalam keadaan tampil.
+   - Gulir rv_tv ke posisi data terakhir.
+   - Menekan tombol "Random" untuk mengambil data terbaru
+   - Memastikan rv_tv dalam keadaan tampil.
+   - Gulir rv_tv ke posisi data terakhir.
+
+4. Menampilkan data Tv Show
+   - Klik TabLayout dengan teks TV SHOW
+   - Memastikan rv_tv dalam keadaan tampil.
+   - Gulir rv_tv ke posisi data terakhir.
+
+5. Menampilkan data detail Movie
    - Memberi tindakan klik pada data ke 0 di rv_movie.
    - Memastikan ImageView untuk img poster tampil.
    - Memastikan TextView untuk title tampil.
@@ -56,12 +95,7 @@ Instrumental Testing HomeActivityTest
    - Memastikan TextView untuk tanggal release tampil.
    - Memastikan TextView untuk userScore tampil.
 
-3. Menampilkan data Tv Show
-   - Klik TabLayout dengan teks TV SHOW
-   - Memastikan rv_tv dalam keadaan tampil.
-   - Gulir rv_tv ke posisi data terakhir.
-
-4. Menampilkan data detail Tv Show
+6. Menampilkan data detail Tv Show
    - Klik TabLayout dengan teks TV SHOW
    - Memberi tindakan klik pada data ke 0 di rv_tv.
    - Memastikan ImageView untuk img poster tampil.
@@ -69,3 +103,33 @@ Instrumental Testing HomeActivityTest
    - Memastikan TextView untuk overview tampil.
    - Memastikan TextView untuk tanggal tayang tampil.
    - Memastikan TextView untuk userScore tampil.
+
+7. Testing Bookmark Movie
+   - Memberi tindakan klik pada data ke 0 di rv_movie.
+   - Memberi tindakan klik pada icon bookmark "action_bookmark"
+   - Memberi tindakan klik tombol kembali
+   - Memberi tindakan klik pada icon fab_favorite
+   - Memastikan rv_movie favorite dalam keadaan tampil.
+   - Memberi tindakan klik pada data ke 0 di rv_movie.
+   - Memastikan ImageView untuk img poster tampil.
+   - Memastikan TextView untuk title tampil.
+   - Memastikan TextView untuk overview tampil.
+   - Memastikan TextView untuk tanggal release tampil.
+   - Memastikan TextView untuk userScore tampil.
+   - Memberi tindakan pada icon fab_favorite
+   - Memberi tindakan klik tombol kembali
+
+8. Testing Bookmark Tv
+   - Memberi tindakan klik pada data ke 0 di rv_tv.
+   - Memberi tindakan klik pada icon bookmark "action_bookmark"
+   - Memberi tindakan klik tombol kembali
+   - Memberi tindakan klik pada icon fab_favorite
+   - Memastikan rv_tv favorite dalam keadaan tampil.
+   - Memberi tindakan klik pada data ke 0 di rv_tv.
+   - Memastikan ImageView untuk img poster tampil.
+   - Memastikan TextView untuk name tampil.
+   - Memastikan TextView untuk overview tampil.
+   - Memastikan TextView untuk tanggal tampil.
+   - Memastikan TextView untuk userScore tampil.
+   - Memberi tindakan pada icon fab_favorite
+   - Memberi tindakan klik tombol kembali
